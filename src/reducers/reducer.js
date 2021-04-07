@@ -1,30 +1,36 @@
 import jsonData from "../jsonData.json";
-import { INCREASE, DECREASE, TOTAL } from "../action";
+import { INCREASE, DECREASE, TOTAL } from "../action/constants";
 const init = {
   products: jsonData,
-  count: 0,
-  total: 0,
+  //count: 80,
+  total: 10,
 };
 
 const reducer = (state = init, action) => {
   if (action.type === INCREASE) {
-    // let temCart = state.products.map((item) => {
-    //   if (item.id === action.payload.id) {
-    //     count = count + 1;
-    //   }
-    //   return item;
-    // });
+    let temCart = state.products.map((item) => {
+      if (item.id === action.payload.id) {
+        item = { ...item, count: item.count + 1 };
+      }
+      return item;
+    });
     //console.log(temCart);
     return {
       ...state,
-      count: action.payload.count + 1,
+      products: temCart,
     };
   }
   if (action.type === DECREASE) {
-    //console.log(action.payload.id);
+    let temCart = state.products.map((item) => {
+      if (item.id === action.payload.id) {
+        item = { ...item, count: item.count - 1 };
+      }
+      return item;
+    });
+    //console.log(temCart);
     return {
       ...state,
-      state: action.payload,
+      products: temCart,
     };
   }
   if (action.type === TOTAL) {

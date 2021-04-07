@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { DECREASE, INCREASE, TOTAL } from "../action";
+
+import { Decrease, Increase } from "../action/action";
 
 const ProductList = ({ state, total, decrease, increase, count }) => {
   return (
@@ -29,10 +30,12 @@ const ProductList = ({ state, total, decrease, increase, count }) => {
                   >
                     -
                   </button>
-                  <div>{count}</div>
+                  <div style={{ width: "20px", textAlign: "center" }}>
+                    {item.count}
+                  </div>
 
                   <button
-                    onClick={() => increase(item.id, count)}
+                    onClick={() => increase(item.id, item.count)}
                     type="button"
                     className="btn btn-primary "
                   >
@@ -58,22 +61,26 @@ const ProductList = ({ state, total, decrease, increase, count }) => {
   );
 };
 const mapStateToProps = (state) => {
+  //const qty = { count: 0 };
+  //state.products.flat().map((p) => Object.assign(p, qty));
+  //console.log(state.products);
+
   return {
     state: state.products,
     total: state.total,
-    count: state.count,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   //const { id } = ownProps;
   //console.log(ownProps);
+
   return {
     decrease: (id) => {
-      dispatch({ type: DECREASE, payload: { id: id } });
+      dispatch(Decrease(id));
     },
-    increase: (id, count) => {
-      dispatch({ type: INCREASE, payload: { id: id, count: count } });
+    increase: (id) => {
+      dispatch(Increase(id));
     },
   };
 };
