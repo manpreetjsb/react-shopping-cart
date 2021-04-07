@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { Decrease, Increase } from "../action/action";
+import { Decrease, Increase, Init } from "../action/action";
 
-const ProductList = ({ state, total, decrease, increase, count }) => {
+const ProductList = ({ state, total, decrease, increase, count, init }) => {
+  useEffect(() => {
+    // state.forEach((item) => {
+    //   item["count"] = 0;
+    // });
+    // return state;
+    console.log("use Effect");
+    init(state);
+  }, []);
   return (
     <div>
       <table className="table">
@@ -76,6 +84,10 @@ const mapDispatchToProps = (dispatch) => {
   //console.log(ownProps);
 
   return {
+    init: (state) => {
+      console.log("init");
+      dispatch(Init(state));
+    },
     decrease: (id) => {
       dispatch(Decrease(id));
     },
