@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { Decrease, Increase, Init } from "../action/action";
 
 const ProductList = ({ state, total, decrease, increase, init }) => {
+  const [disable, setDisable] = useState(false);
   useEffect(() => {
     init();
   }, []);
@@ -29,8 +30,9 @@ const ProductList = ({ state, total, decrease, increase, init }) => {
                 <td className="input-group">
                   <button
                     type="button"
-                    onClick={() => decrease(item.id)}
+                    onClick={() => decrease(item.id, item.count)}
                     className="btn btn-danger primary"
+                    disabled={disable}
                   >
                     -
                   </button>
@@ -39,7 +41,7 @@ const ProductList = ({ state, total, decrease, increase, init }) => {
                   </div>
 
                   <button
-                    onClick={() => increase(item.id, item.count)}
+                    onClick={() => increase(item.id)}
                     type="button"
                     className="btn btn-primary "
                   >
@@ -81,8 +83,10 @@ const mapDispatchToProps = (dispatch) => {
     init: () => {
       dispatch(Init());
     },
-    decrease: (id) => {
-      dispatch(Decrease(id));
+    decrease: (id, count) => {
+      if (count > 0) {
+        dispatch(Decrease(id));
+      }
     },
     increase: (id) => {
       dispatch(Increase(id));

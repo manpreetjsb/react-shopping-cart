@@ -43,13 +43,6 @@ const reducer = (state = initial, action) => {
     };
   }
   if (action.type === DECREASE) {
-    //console.log(state.products[action.payload.id].count);
-    // if (state.products[action.payload.id].count === 0) {
-    //   const temRemove = state.products.map((item) => {
-    //     return item.id !== action.payload.id;
-    //   });
-    // }
-
     let temCart = state.products.map((item) => {
       if (item.id === action.payload.id) {
         item = { ...item, count: item.count - 1 };
