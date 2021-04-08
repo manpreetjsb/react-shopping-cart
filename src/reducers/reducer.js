@@ -11,13 +11,15 @@ const reducer = (state = initial, action) => {
   //   item["count"] = 0;
   // });
   // return state;
-  console.log(action.type);
+  //console.log("first", action.type);
   if (action.type === INIT) {
-    let temCart = state.products.forEach((item) => {
-      item["count"] = 0;
-      // return temCart;
-    });
-    return temCart;
+    console.log(state);
+    // let temCart = state.products.forEach((item) => {
+    //   item["count"] = 0;
+    // });
+    const qtyr = { count: 0 };
+    let temCart = state.products.flat().map((p) => Object.assign(p, qtyr));
+    console.log("temp", temCart);
     return {
       ...state,
       products: temCart,
