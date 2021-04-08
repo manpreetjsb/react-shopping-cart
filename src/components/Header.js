@@ -11,7 +11,7 @@ const Header = ({ count }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { count: state.count };
+  return { count: state.totalItemInCart };
 };
 
 export default connect(mapStateToProps)(Header);

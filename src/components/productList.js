@@ -5,10 +5,9 @@ import { Decrease, Increase, Init } from "../action/action";
 
 const ProductList = ({ state, total, decrease, increase, init }) => {
   useEffect(() => {
-    console.log("use Effect");
     init();
   }, []);
-  console.log(state);
+
   return (
     <div>
       <table className="table">
@@ -66,12 +65,10 @@ const ProductList = ({ state, total, decrease, increase, init }) => {
   );
 };
 const mapStateToProps = (state) => {
-  //const qty = { count: 0 };
-  //state.products.flat().map((p) => Object.assign(p, qty));
-  //console.log(state.products);
-
+  //console.log(state);
   return {
     state: state.products,
+    totalItemInCart: state.totalItemInCart,
     total: state.total,
   };
 };
@@ -82,7 +79,6 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
     init: () => {
-      console.log("init");
       dispatch(Init());
     },
     decrease: (id) => {
@@ -90,9 +86,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     increase: (id) => {
       dispatch(Increase(id));
-    },
-    total: () => {
-      dispatch(Total());
     },
   };
 };

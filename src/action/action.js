@@ -1,4 +1,4 @@
-import { DECREASE, INCREASE, TOTAL, INIT } from "./constants";
+import { DECREASE, INCREASE, INIT } from "./constants";
 
 export const Decrease = (id) => {
   return { type: DECREASE, payload: { id: id } };
