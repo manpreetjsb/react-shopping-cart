@@ -1,6 +1,6 @@
-# react-shopping-cart
+## react-shopping-cart
 
-## Install Dependencies
+# Install Dependencies
 npm i
 
 # Runs the app in the development mode.
