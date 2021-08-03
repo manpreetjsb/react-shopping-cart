@@ -54,13 +54,13 @@ const reducer = (state = initial, action) => {
       arr.reduce((sum, { Price, count }) => sum + Price * count, 0);
     const msgTotal = sumTotal(data);
 
-    var msgCount = data.reduce(function (prev, cur) {
+    var msgCountForDec = data.reduce(function (prev, cur) {
       return prev + cur.count;
     }, 0);
     return {
       ...state,
       products: temCart,
-      totalItemInCart: msgCount,
+      totalItemInCart: msgCountForDec,
       total: msgTotal,
     };
   }

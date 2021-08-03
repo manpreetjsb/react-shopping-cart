@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { Decrease, Increase, Init } from "../action/action";
 
 const ProductList = ({ state, total, decrease, increase, init }) => {
-  const [disable, setDisable] = useState(false);
   useEffect(() => {
     init();
   }, []);
@@ -32,7 +31,6 @@ const ProductList = ({ state, total, decrease, increase, init }) => {
                     type="button"
                     onClick={() => decrease(item.id, item.count)}
                     className="btn btn-danger primary"
-                    disabled={disable}
                   >
                     -
                   </button>
